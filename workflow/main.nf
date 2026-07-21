@@ -14,6 +14,7 @@ nextflow.enable.dsl=2
 // ─── Modules ─────────────────────────────────────────────────────────────────
 
 include { DOWNLOAD_READS } from '../modules/download_reads.nf'
+include { FASTP }          from '../modules/fastp.nf'
 
 workflow {
 
@@ -25,4 +26,6 @@ workflow {
         }
 
     DOWNLOAD_READS(ch_samples)
+
+    FASTP(DOWNLOAD_READS.out.reads)
 }
