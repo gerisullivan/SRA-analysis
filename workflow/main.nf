@@ -15,6 +15,7 @@ nextflow.enable.dsl=2
 
 include { DOWNLOAD_READS } from '../modules/download_reads.nf'
 include { FASTP }          from '../modules/fastp.nf'
+include { KRAKEN }         from '../modules/kraken.nf'
 
 workflow {
 
@@ -25,7 +26,12 @@ workflow {
             tuple(run_accession, r1, r2)
         }
 
+# pass the sample sheet to download reads
     DOWNLOAD_READS(ch_samples)
 
+# pass the reads to fastp - faster and more comprehensive than trimmomatic + fastQC
     FASTP(DOWNLOAD_READS.out.reads)
+
+# assign taxonomy to reads
+    KRAKEN(DOWNLOAD_READS.out.reads)
 }
