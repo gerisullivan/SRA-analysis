@@ -20,8 +20,9 @@ Sample data used in development is drawn from [PRJNA1128840](https://www.ncbi.nl
 ```
 SRA-analysis/
 ├── modules/
-│   └──  download_testdata.nf   # Download process
-│   └──  fastp.nf               # Fastp process
+│   └──  download_testdata.nf   # Download
+│   └──  fastp.nf               # Assess FASTQ file quality and trim
+│   └──  kraken.nf              # Taxonomic classification
 ├── testdata/
 │   └── samplesheet.tsv         # Fastq URL pairs (tab-separated, no header)
 ├── workflow/
