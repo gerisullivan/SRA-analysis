@@ -16,6 +16,7 @@ nextflow.enable.dsl=2
 include { DOWNLOAD_READS } from '../modules/download_reads.nf'
 include { FASTP }          from '../modules/fastp.nf'
 include { KRAKEN }         from '../modules/kraken.nf'
+include { SKESA }         from '../modules/skesa.nf'
 
 workflow {
 
@@ -34,4 +35,8 @@ workflow {
 
 // assign taxonomy to reads
     KRAKEN(DOWNLOAD_READS.out.reads)
+
+// assemble genome with SKESA
+    SKESA(DOWNLOAD_READS.out.reads)
+
 }
