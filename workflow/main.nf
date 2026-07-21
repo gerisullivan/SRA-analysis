@@ -35,10 +35,10 @@ workflow {
     FASTP(DOWNLOAD_READS.out.reads)
 
 // assign taxonomy to reads
-    KRAKEN(DOWNLOAD_READS.out.reads)
+    KRAKEN(FASTP.out.reads)
 
 // assemble genome with SKESA
-    SKESA(DOWNLOAD_READS.out.reads)
+    SKESA(FASTP.out.reads)
 
 // further type the samples by running MLST on the contigs
     MLST(SKESA.out.contigs)
