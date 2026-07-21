@@ -13,7 +13,7 @@ Sample data used in development is drawn from [PRJNA1128840](https://www.ncbi.nl
 - Read a samplesheet of ENA fastq URLs (`testdata/samplesheet.tsv`)
 - Download R1/R2 for each run in parallel
 - Publish results per sample to `results/raw_reads/`
-- Run [fastp](https://github.com/opengene/fastp) on samples
+- Run [fastp](https://github.com/opengene/fastp) on samples for trimming and quality control
 - Run [kraken2](https://github.com/DerrickWood/kraken2) for taxonomic classification of samples
 
 ## Project Structure
@@ -58,12 +58,6 @@ Samplesheet format (tab-separated, no header):
 ## Dependencies
 - [fastp](https://github.com/opengene/fastp)
 - [kraken2](https://github.com/DerrickWood/kraken2)
-
-## Development Guidelines
-
-- Samplesheet-driven inputs, no hardcoded accessions in process scripts
-- One process invocation per sample for parallelism and per-sample resumability
-- Pin tool versions where dependencies are introduced
 
 ## License
 
