@@ -19,19 +19,19 @@ include { KRAKEN }         from '../modules/kraken.nf'
 
 workflow {
 
-# download reads based on the samplesheet.tsv set in nextflow.config
+// download reads based on the samplesheet.tsv set in nextflow.config
     ch_samples = channel.fromPath(params.samplesheet).splitCsv(sep: '\t')
         .map { r1, r2 ->
             def run_accession = file(r1).baseName.replace('_1.fastq', '')
             tuple(run_accession, r1, r2)
         }
 
-# pass the sample sheet to download reads
+// pass the sample sheet to download reads
     DOWNLOAD_READS(ch_samples)
 
-# pass the reads to fastp - faster and more comprehensive than trimmomatic + fastQC
+// pass the reads to fastp - faster and more comprehensive than trimmomatic + fastQC
     FASTP(DOWNLOAD_READS.out.reads)
 
-# assign taxonomy to reads
+// assign taxonomy to reads
     KRAKEN(DOWNLOAD_READS.out.reads)
 }
