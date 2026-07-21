@@ -15,6 +15,8 @@ Sample data used in development is drawn from [PRJNA1128840](https://www.ncbi.nl
 - Publish results per sample to `results/raw_reads/`
 - Run [fastp](https://github.com/opengene/fastp) on samples for trimming and quality control
 - Run [kraken2](https://github.com/DerrickWood/kraken2) for taxonomic classification of samples
+- Assemble genomes using [SKESA](https://github.com/ncbi/SKESA)
+- Type genomes using [MLST](https://github.com/tseemann/mlst)
 
 ## Project Structure
 
@@ -24,6 +26,8 @@ SRA-analysis/
 │   └──  download_testdata.nf   # Download
 │   └──  fastp.nf               # Assess FASTQ file quality and trim
 │   └──  kraken.nf              # Taxonomic classification
+│   └──  skesa.nf               # De novo genome assembly
+│   └──  mlst.nf                # Multi-locus sequence typing on contigs
 ├── testdata/
 │   └── samplesheet.tsv         # Fastq URL pairs (tab-separated, no header)
 ├── workflow/
@@ -58,6 +62,8 @@ Samplesheet format (tab-separated, no header):
 ## Dependencies
 - [fastp](https://github.com/opengene/fastp)
 - [kraken2](https://github.com/DerrickWood/kraken2)
+- [SKESA](https://github.com/ncbi/SKESA)
+- [MLST](https://github.com/tseemann/mlst)
 
 ## License
 
