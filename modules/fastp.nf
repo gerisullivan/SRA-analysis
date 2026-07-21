@@ -31,7 +31,7 @@ process FASTP {
 
     script:
     """
-    source /mnt/data/miniconda3/bin/activate /mnt/data/miniconda3/envs/fastp
+    source ${params.minicondapath}/bin/activate ${params.minicondapath}/envs/fastp
 
     echo "Stage,Software_version" > tools.csv
     echo "fastp,\$(fastp --version)" >> tools.csv
