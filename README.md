@@ -1,2 +1,65 @@
 # SRA-analysis
-A Nextflow pipeline to analyse publicly available bacterial sequence data
+
+### A Nextflow DSL2 pipeline for downloading public paired-end sequencing reads and analysing.
+
+## Overview
+
+Downloads a defined set of paired-end fastq files from the European Nucleotide Archive (ENA), given a simple three-column samplesheet of fastq IDs and URLs. Built as a self-contained example of Nextflow DSL2 module structure.
+
+Sample data used in development is drawn from [PRJNA1128840](https://www.ncbi.nlm.nih.gov/bioproject/PRJNA1128840), a public *Salmonella enterica* whole-genome sequencing BioProject.
+
+## Current Workflow
+
+- Read a samplesheet of ENA fastq URLs (`testdata/samplesheet.tsv`)
+- Download R1/R2 for each run in parallel
+- Publish results per sample to `results/raw_reads/`
+- Run [fastp](https://github.com/opengene/fastp) on samples
+
+## Project Structure
+
+```
+SRA-analysis/
+├── modules/
+│   └──  download_testdata.nf   # Download process
+│   └──  fastp.nf               # Fastp process
+├── testdata/
+│   └── samplesheet.tsv         # Fastq URL pairs (tab-separated, no header)
+├── workflow/
+│   └── main.nf                 # Workflow
+│   └── nextflow.config         # Default parameters
+```
+
+## Usage
+
+```bash
+nextflow run main.nf --samplesheet testdata/samplesheet.tsv --outdir results
+```
+
+Samplesheet format (tab-separated, no header):
+
+```
+<ID1>  <url_1>	<url_2>
+<ID2>  <url_1>	<url_2>
+```
+
+## Technologies
+
+- **Nextflow** (DSL2) - Workflow orchestration
+- **wget** - File download
+- **ENA** - Public read data source
+
+## Prerequisites
+
+- Nextflow (23.x or later)
+- Internet access to `ftp.sra.ebi.ac.uk`
+- [fastp](https://github.com/opengene/fastp)
+
+## Development Guidelines
+
+- Samplesheet-driven inputs, no hardcoded accessions in process scripts
+- One process invocation per sample for parallelism and per-sample resumability
+- Pin tool versions where dependencies are introduced
+
+## License
+
+MIT
