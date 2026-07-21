@@ -58,6 +58,7 @@ Samplesheet format (tab-separated, no header):
 
 - Nextflow (23.x or later)
 - Internet access to `ftp.sra.ebi.ac.uk`
+- Miniconda3 or equivalent, with the path specified in [nextflow.config](workflow/nextflow.config)
 
 ## Dependencies
 - [fastp](https://github.com/opengene/fastp)
