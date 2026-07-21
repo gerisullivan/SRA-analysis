@@ -54,7 +54,10 @@ Samplesheet format (tab-separated, no header):
 
 - Nextflow (23.x or later)
 - Internet access to `ftp.sra.ebi.ac.uk`
+
+## Dependencies
 - [fastp](https://github.com/opengene/fastp)
+- [kraken2](https://github.com/DerrickWood/kraken2)
 
 ## Development Guidelines
 
