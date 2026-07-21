@@ -1,0 +1,24 @@
+# Nextflow
+.nextflow/
+.nextflow.log*
+work/
+
+# Nextflow trace/report/timeline files
+trace*.txt
+report*.html
+timeline*.html
+dag*.html
+dag*.dot
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+*.swp
+
+# Environment / secrets
+.env
+*.pem
+
+# Downloaded test data (keep the samplesheet, not the fastqs)
+testdata/*.gz
