@@ -14,6 +14,7 @@ Sample data used in development is drawn from [PRJNA1128840](https://www.ncbi.nl
 - Download R1/R2 for each run in parallel
 - Publish results per sample to `results/raw_reads/`
 - Run [fastp](https://github.com/opengene/fastp) on samples
+- Run [kraken2](https://github.com/DerrickWood/kraken2) for taxonomic classification of samples
 
 ## Project Structure
 
