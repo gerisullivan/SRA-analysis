@@ -35,10 +35,14 @@ process KRAKEN {
 
 	output:
 	path "${sample}.kraken.tab", emit: kraken
+	path "tools.csv", emit: tools
 
 	script:
 	"""
 	source ${params.minicondapath}/bin/activate ${params.minicondapath}/envs/kraken2
+
+	echo "Stage,Software_version" > tools.csv
+    echo "kraken2,\$(kraken2 --version)" >> tools.csv
 
 	kraken2 --db /mnt/data/PGRepo/kraken2_db/Standard-16 --threads 4 --quick --output - --report ${sample}.kraken.tab --memory-mapping --paired ${R1} ${R2}
 	"""
