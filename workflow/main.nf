@@ -17,6 +17,7 @@ include { DOWNLOAD_READS } from '../modules/download_reads.nf'
 include { FASTP }          from '../modules/fastp.nf'
 include { KRAKEN }         from '../modules/kraken.nf'
 include { SKESA }         from '../modules/skesa.nf'
+include { MLST }          from '../modules/mlst.nf'
 
 workflow {
 
@@ -38,5 +39,8 @@ workflow {
 
 // assemble genome with SKESA
     SKESA(DOWNLOAD_READS.out.reads)
+
+// further type the samples by running MLST on the contigs
+    MLST(SKESA.out.contigs)
 
 }
